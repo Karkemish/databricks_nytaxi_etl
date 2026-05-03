@@ -12,7 +12,7 @@ class AzureBlobStorageAdapter:
     Adaptador para conectar con ADLS Gen2.
     Utiliza autenticación con Service Principal y ofrece funcionalidades avanzadas como barra de progreso y manejo de errores.
     """
-    def __init__(self, account_name: str):
+    def __init__(self, account_name: str) -> None:
         """
         Inicializa el adaptador con la cuenta de almacenamiento y las credenciales necesarias.
         Arguments:
@@ -32,7 +32,7 @@ class AzureBlobStorageAdapter:
             credential=self.credential
         )
 
-    def upload_file(self, container_name, blob_name, file_path):
+    def upload_file_with_progress(self, container_name: str, blob_name: str, file_path: str) -> None:
         """
         Sube un archivo a ADLS Gen2 con barra de progreso y 
         verificación de existencia previa.
