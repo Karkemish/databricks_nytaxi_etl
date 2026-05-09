@@ -2,7 +2,7 @@ import os
 from azure.storage.blob import BlobServiceClient
 from azure.identity import ClientSecretCredential
 from tqdm import tqdm
-from azure.core.exceptions import ResourceExistsError
+from azure.core.exceptions import ResourceNotFoundError
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -47,11 +47,14 @@ class AzureBlobStorageAdapter:
             blob_client.get_blob_properties()
             print(f"El blob '{blob_name}' ya existe en el contenedor '{container_name}'.")
             return
-        except ResourceExistsError:
+        except ResourceNotFoundError:
             pass  # El blob no existe, proceder con la subida   
+        except Exception as e:
+            # Cualquier otro error (permisos, red) sí debe reportarse
+            print(f"Error inesperado al verificar blob: {e}")
+            raise e
 
         file_size = os.path.getsize(file_path)
-
         # Subir el archivo con barra de progreso
         with open(file_path, "rb") as f:
             with tqdm.wrapattr(
