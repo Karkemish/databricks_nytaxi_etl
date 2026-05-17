@@ -27,13 +27,13 @@ class FileExtractor:
             service (str): Servicio del cual se extraerán los datos.
             name_file (str): Nombre del archivo.
             extension (str): Extensión del archivo a descargar.
-            period (str): Período de los datos a extraer.
+            period (str): Período de los datos a extraer, format: YYYY-MM.
             desc (str): Descripción para la barra de progreso.
         """
         if period is None:
             file_name = f"{name_file}.{extension}"
         else:        
-            file_name = f"{name_file}_{period}.{extension}"
+            file_name = f"{name_file}_{service.replace('-', '')}_{period}.{extension}"
         url = f"https://d37ci6vzurychx.cloudfront.net/{service}/{file_name}"
         local_path = os.path.join(self.local_dir, file_name)
 
