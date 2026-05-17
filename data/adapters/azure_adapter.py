@@ -34,8 +34,11 @@ class AzureBlobStorageAdapter:
 
     def upload_file_with_progress(self, container_name: str, blob_name: str, file_path: str) -> None:
         """
-        Sube un archivo a ADLS Gen2 con barra de progreso y 
-        verificación de existencia previa.
+        Sube un archivo a ADLS Gen2 con barra de progreso y verificación de existencia previa.
+        Arguments:
+            container_name (str): Nombre del contenedor en Azure donde se subirá el archivo.
+            blob_name (str): Nombre del blob (archivo) que se creará en Azure.
+            file_path (str): Ruta local del archivo que se desea subir.
         """
         blob_client = self.blob_service_client.get_blob_client(
             container=container_name, 
