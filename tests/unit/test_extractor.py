@@ -31,7 +31,7 @@ def test_download_url_construction_with_period(extractor):
         
         extractor.download_with_progress(service, name_file, extension, period)
         
-        expected_url = f"https://d37ci6vzurychx.cloudfront.net/{service}/{name_file}_{period}.{extension}"
+        expected_url = f"https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2024-01.parquet"
         mock_get.assert_called_with(expected_url, stream=True)
 
 def test_download_url_construction_without_period(extractor):
@@ -53,5 +53,5 @@ def test_download_url_construction_without_period(extractor):
         
         extractor.download_with_progress(service, name_file, extension)
         
-        expected_url = f"https://d37ci6vzurychx.cloudfront.net/{service}/{name_file}.{extension}"
+        expected_url = f"https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv"
         mock_get.assert_called_with(expected_url, stream=True)
