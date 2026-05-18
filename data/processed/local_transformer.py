@@ -17,10 +17,10 @@ class LocalTransformer:
         df = pd.read_csv(input_csv)
         records = [
             {
-                "location_id": int(row["locationid"]),
+                "location_id": int(row["LocationID"]),
                 "location": {
-                    "borough": row["borough"],
-                    "zone": row["zone"],
+                    "borough": row["Borough"],
+                    "zone": row["Zone"],
                     "service_zone": row["service_zone"]
                 }
             } for _, row in df.iterrows()
