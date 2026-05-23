@@ -1,0 +1,2 @@
+CREATE CATALOG IF NOT EXISTS dev_taxi;
+
