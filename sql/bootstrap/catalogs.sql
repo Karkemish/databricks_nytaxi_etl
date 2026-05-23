@@ -1,2 +1,3 @@
-CREATE CATALOG IF NOT EXISTS dev_taxi;
+CREATE CATALOG dev
+MANAGED LOCATION 'abfss://metastore@databricksadlsproject01.dfs.core.windows.net/dev/';
 

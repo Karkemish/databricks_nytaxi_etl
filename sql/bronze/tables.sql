@@ -1,7 +1,7 @@
 -- ============================================================================
 -- CREACIÓN DE LA TABLA BRONZE: FIDELIDAD ABSOLUTA DEL ORIGEN
 -- ============================================================================
-CREATE TABLE IF NOT EXISTS dev_taxi.bronze.raw_taxi_trip_yellow (
+CREATE TABLE IF NOT EXISTS dev.bronze.raw_taxi_trip_yellow (
     vendorid INT COMMENT 'Taxi technology provider (1 = Creative Mobile Technologies, 2 = VeriFone Inc.)',
     ratecodeid DOUBLE COMMENT 'Rate code at end of trip (1=Standard, 2=JFK, 3=Newark, 4=Nassau/Westchester, 5=Negotiated, 6=Group)',
     pulocationid INT COMMENT 'TLC Taxi Zone where the meter was engaged',
@@ -30,7 +30,7 @@ COMMENT 'Datos históricos en formato Delta replicados desde la Landing para aud
 -- ============================================================================
 -- CREACIÓN DE LA TABLA BRONZE: ESPEJO NATIVO DE GREEN TAXI TRIPS
 -- ============================================================================
-CREATE TABLE IF NOT EXISTS dev_taxi.bronze.raw_taxi_trip_green (
+CREATE TABLE IF NOT EXISTS dev.bronze.raw_taxi_trip_green (
     VendorID INT COMMENT 'Taxi technology provider (1 = Creative Mobile Technologies, 2 = VeriFone Inc.)',
     RatecodeID DOUBLE COMMENT 'Rate code at end of trip (1=Standard, 2=JFK, 3=Newark, 4=Nassau/Westchester, 5=Negotiated, 6=Group)',
     PULocationID INT COMMENT 'TLC Taxi Zone where the meter was engaged',
@@ -62,7 +62,7 @@ COMMENT 'Capa Bronze: Espejo Delta inmutable de los archivos Parquet de Green Ta
 -- CREACIÓN DE LA TABLA BRONZE: MAESTRO DE ZONAS (Origen JSON Anidado)
 -- ============================================================================
 -- Usamos STRUCT para mapear el objeto nativo "location" que creaste en Python
-CREATE TABLE IF NOT EXISTS dev_taxi.bronze.raw_taxi_trip_zone (
+CREATE TABLE IF NOT EXISTS dev.bronze.raw_taxi_trip_zone (
     location_id INT COMMENT 'ID único de la zona de taxi (TLC Taxi Zone ID)',
     location STRUCT<
         borough: STRING,
@@ -80,7 +80,7 @@ COMMENT 'Capa Bronze: Catálogo maestro de zonas TLC mapeado desde el JSON estru
 -- ============================================================================
 -- CREACIÓN DE LA TABLA BRONZE: DESCRIPCIONES DE CÓDIGOS (Origen CSV Plano)
 -- ============================================================================
-CREATE TABLE IF NOT EXISTS dev_taxi.bronze.raw_taxi_trip_description (
+CREATE TABLE IF NOT EXISTS dev.bronze.raw_taxi_trip_description (
     id INT COMMENT 'ID secuencial del registro',
     group_code STRING COMMENT 'Código único del grupo mapeado (ej: 001001)',
     group_description STRING COMMENT 'Nombre de la variable original (RatecodeID, payment_type)',
