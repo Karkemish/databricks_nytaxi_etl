@@ -83,7 +83,7 @@ COMMENT 'Capa Silver: Modelo integrado de viajes limpio y listo para consumo de 
 -- ============================================================================
 -- CAPA SILVER: MAESTRO DE DESCRIPCIONES DE CÓDIGOS (Dimension Table)
 -- ============================================================================
-CREATE TABLE IF NOT EXISTS main.silver.dim_taxi_trip_description (
+CREATE TABLE IF NOT EXISTS dev.silver.dim_taxi_trip_description (
     id INT COMMENT 'ID secuencial del registro',
     group_code STRING COMMENT 'Código único del grupo (ej: 001001)',
     group_variable_name STRING COMMENT 'Nombre estandarizado de la variable origen (rate_code_id, payment_type)',
