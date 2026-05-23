@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS dev.bronze.raw_taxi_trip_yellow (
     source_file STRING COMMENT 'Métrica de auditoría: Ruta y nombre del archivo original inmutable en la Landing Zone'
 )
 USING DELTA
-LOCATION 'abfss://bronze@databricksadlsproject01.dfs.core.windows.net/taxi_trip_yellow/'
+-- LOCATION 'abfss://bronze@databricksadlsproject01.dfs.core.windows.net/dev/'
 COMMENT 'Datos históricos en formato Delta replicados desde la Landing para auditoría.';
 
 -- ============================================================================
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS dev.bronze.raw_taxi_trip_green (
     source_file STRING COMMENT 'Métrica de auditoría: Ruta y nombre del archivo original inmutable en la Landing Zone'
 )
 USING DELTA
-LOCATION 'abfss://bronze@databricksadlsproject01.dfs.core.windows.net/taxi_trip_green/'
+-- LOCATION 'abfss://bronze@databricksadlsproject01.dfs.core.windows.net/dev/'
 COMMENT 'Capa Bronze: Espejo Delta inmutable de los archivos Parquet de Green Taxi depositados en Landing.';
 
 -- ============================================================================
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS dev.bronze.raw_taxi_trip_zone (
     source_file STRING COMMENT 'Ruta del archivo JSON inmutable en Landing'
 )
 USING DELTA
-LOCATION 'abfss://bronze@databricksadlsproject01.dfs.core.windows.net/taxi_trip_zone/'
+-- LOCATION 'abfss://bronze@databricksadlsproject01.dfs.core.windows.net/dev/'
 COMMENT 'Capa Bronze: Catálogo maestro de zonas TLC mapeado desde el JSON estructurado original.';
 
 -- ============================================================================
@@ -91,5 +91,5 @@ CREATE TABLE IF NOT EXISTS dev.bronze.raw_taxi_trip_description (
     source_file STRING COMMENT 'Ruta del archivo CSV/Parquet inmutable en Landing'
 )
 USING DELTA
-LOCATION 'abfss://bronze@databricksadlsproject01.dfs.core.windows.net/taxi_trip_description/'
+-- LOCATION 'abfss://bronze@databricksadlsproject01.dfs.core.windows.net/dev/'
 COMMENT 'Capa Bronze: Tabla de referencia corporativa para decodificar RatecodeID y payment_type en las capas siguientes.';
