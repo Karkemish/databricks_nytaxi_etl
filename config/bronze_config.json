@@ -1,0 +1,38 @@
+{
+  "pipelines": [
+    {
+      "name": "yellow_taxis",
+      "type": "trips",
+      "source_path": "abfss://landing@{storage_account}.dfs.core.windows.net/yellow_taxi_trip/*/*.parquet",
+      "target_table": "{catalog}.bronze.raw_taxi_trip_yellow",
+      "file_format": "parquet",
+      "checkpoint_path": "abfss://bronze@{storage_account}.dfs.core.windows.net/_checkpoints/yellow_trips",
+      "regex_pattern": "yellow_tripdata_(\\d{4})-(\\d{2})"
+    },
+    {
+      "name": "green_taxis",
+      "type": "trips",
+      "source_path": "abfss://landing@{storage_account}.dfs.core.windows.net/green_taxi_trip/*/*.parquet",
+      "target_table": "{catalog}.bronze.raw_taxi_trip_green",
+      "file_format": "parquet",
+      "checkpoint_path": "abfss://bronze@{storage_account}.dfs.core.windows.net/_checkpoints/green_trips",
+      "regex_pattern": "green_tripdata_(\\d{4})-(\\d{2})"
+    },
+    {
+      "name": "taxi_zones",
+      "type": "catalog_json",
+      "source_path": "abfss://landing@{storage_account}.dfs.core.windows.net/zone_taxi_trip/*.json",
+      "target_table": "{catalog}.bronze.raw_taxi_trip_zone",
+      "file_format": "json",
+      "checkpoint_path": "abfss://bronze@{storage_account}.dfs.core.windows.net/_checkpoints/zones"
+    },
+    {
+      "name": "trip_descriptions",
+      "type": "catalog_csv",
+      "source_path": "abfss://landing@{storage_account}.dfs.core.windows.net/description_taxi_trip/*.csv",
+      "target_table": "{catalog}.bronze.raw_taxi_trip_description",
+      "file_format": "csv",
+      "checkpoint_path": "abfss://bronze@{storage_account}.dfs.core.windows.net/_checkpoints/descriptions"
+    }
+  ]
+}
