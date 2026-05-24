@@ -31,10 +31,10 @@ COMMENT 'Datos históricos en formato Delta replicados desde la Landing para aud
 -- CREACIÓN DE LA TABLA BRONZE: ESPEJO NATIVO DE GREEN TAXI TRIPS
 -- ============================================================================
 CREATE TABLE IF NOT EXISTS dev.bronze.raw_taxi_trip_green (
-    VendorID INT COMMENT 'Taxi technology provider (1 = Creative Mobile Technologies, 2 = VeriFone Inc.)',
-    RatecodeID DOUBLE COMMENT 'Rate code at end of trip (1=Standard, 2=JFK, 3=Newark, 4=Nassau/Westchester, 5=Negotiated, 6=Group)',
-    PULocationID INT COMMENT 'TLC Taxi Zone where the meter was engaged',
-    DOLocationID INT COMMENT 'TLC Taxi Zone where the meter was disengaged',
+    vendorid INT COMMENT 'Taxi technology provider (1 = Creative Mobile Technologies, 2 = VeriFone Inc.)',
+    ratecodeid DOUBLE COMMENT 'Rate code at end of trip (1=Standard, 2=JFK, 3=Newark, 4=Nassau/Westchester, 5=Negotiated, 6=Group)',
+    pulocationid INT COMMENT 'TLC Taxi Zone where the meter was engaged',
+    dolocationid INT COMMENT 'TLC Taxi Zone where the meter was disengaged',
     lpep_pickup_datetime TIMESTAMP COMMENT 'Date and time when the meter was engaged (LPEP = Green Taxis)',
     lpep_dropoff_datetime TIMESTAMP COMMENT 'Date and time when the meter was disengaged',
     store_and_fwd_flag STRING COMMENT 'Flag indicating if trip record was held in vehicle memory (Y/N)',
