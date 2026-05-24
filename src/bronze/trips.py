@@ -1,5 +1,4 @@
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import regexp_extract
 from src.bronze.base import BronzeBasePipeline
 
 def ingest_taxi_trips(spark: SparkSession, config: dict) -> None:
@@ -17,6 +16,7 @@ def ingest_taxi_trips(spark: SparkSession, config: dict) -> None:
                 .format("cloudFiles")
                 .option("cloudFiles.format", "parquet")
                 .option("header", "true")
+                .schema(config['schema'])
                 .load(config['source_path']))
     
     # 2. Inyección de columnas de auditoría base
