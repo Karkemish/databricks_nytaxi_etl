@@ -1,6 +1,5 @@
 from pyspark.sql import SparkSession, DataFrame
 from pyspark.sql.functions import col, lit
-from silver.base_transformer import SilverBaseTransformer
 
 def _align_and_filter_taxi(df: DataFrame, service_type: str) -> DataFrame:
     """
