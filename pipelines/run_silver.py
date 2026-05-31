@@ -24,7 +24,7 @@ def main():
     # 3. Cargar archivo de configuración declarativo
 
     if "get_ipython" in globals() or "__file__" not in globals():
-    script_path = os.path.abspath(sys.argv[0])
+        script_path = os.path.abspath(sys.argv[0])
     else:
         script_path = os.path.abspath(__file__)
     script_dir = os.path.dirname(script_path)
