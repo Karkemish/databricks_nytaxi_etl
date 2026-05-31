@@ -2,6 +2,7 @@
 # pylint: disable=undefined-variable
 # type: ignore
 import json
+import os
 from pyspark.sql import SparkSession
 from src.bronze.trips import ingest_taxi_trips
 from src.bronze.catalogs import ingest_json_zones, ingest_csv_description
@@ -21,7 +22,11 @@ def main():
     }
     storage_account = storage_mapping.get(env, "")
 
-    with open("config/bronze_config.json", "r") as f:
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.dirname(script_dir)
+    config_path = os.path.join(project_root, "config", "bronze_config.json")
+    
+    with open(config_path, "r") as f:
         config_data = json.load(f)
 
     for pipe in config_data["pipelines"]:

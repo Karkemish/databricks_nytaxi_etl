@@ -2,6 +2,7 @@
 # pylint: disable=undefined-variable
 # type: ignore
 import json
+import os
 from pyspark.sql import SparkSession
 from src.gold.dim_vendors import process_gold_dim_vendors
 from src.gold.fct_trips import process_gold_fct_trips
@@ -20,7 +21,12 @@ def main():
     print(f"🏆 [Gold Orchestrator] Iniciando capa de Negocio en el catálogo: {catalog.upper()}")
 
     # 3. Cargar archivo de configuración declarativo
-    with open("config/gold_config.json", "r") as f:
+
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.dirname(script_dir)
+    config_path = os.path.join(project_root, "config", "bronze_config.json")
+    
+    with open(config_path, "r") as f:
         config_data = json.load(f)
 
     # Formatear todos los nombres de tablas inyectando el catálogo real
