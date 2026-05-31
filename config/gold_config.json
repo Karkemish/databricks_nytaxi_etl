@@ -1,0 +1,16 @@
+{
+  "environments": {
+    "dev": {
+      "catalog": "dev"
+    }
+  },
+  "gold_pipeline": {
+    "source_unioned": "{catalog}.silver.int_trips_unioned",
+    "source_payment_type_desc": "{catalog}.silver.dim_taxi_trip_description",
+    "source_trips": "{catalog}.silver.int_trips",
+    "source_zones": "{catalog}.silver.dim_taxi_trip_zone",
+    "target_dim_vendors": "{catalog}.gold.dim_vendors",
+    "target_fct_trips": "{catalog}.gold.fct_trips",
+    "target_monthly_revenue": "{catalog}.gold.fct_monthly_zone_revenue"
+  }
+}
