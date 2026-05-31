@@ -2,6 +2,7 @@
 # pylint: disable=undefined-variable
 # type: ignore
 import json
+import sys
 import os
 from pyspark.sql import SparkSession
 from src.bronze.trips import ingest_taxi_trips
@@ -22,10 +23,13 @@ def main():
     }
     storage_account = storage_mapping.get(env, "")
 
-    script_dir = os.path.dirname(os.path.abspath(__file__))
+    if "get_ipython" in globals() or "__file__" not in globals():
+    script_path = os.path.abspath(sys.argv[0])
+    else:
+        script_path = os.path.abspath(__file__)
+    script_dir = os.path.dirname(script_path)
     project_root = os.path.dirname(script_dir)
     config_path = os.path.join(project_root, "config", "bronze_config.json")
-    
     with open(config_path, "r") as f:
         config_data = json.load(f)
 
