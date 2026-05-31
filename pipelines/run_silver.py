@@ -41,9 +41,9 @@ def main():
         
         print(f"📦 Procesando dimensión [{dim['name']}] ({dim['type']})...")
         if dim["type"] == "zone":
-            process_dimensions_zone(spark, source_table, target_table)
+            process_dimensions_zone(spark, dim)
         elif dim["type"] == "description":
-            process_dimensions_description(spark, source_table, target_table)
+            process_dimensions_description(spark, dim)
 
     # 5. Fase 2: Procesar Hechos (Unificación de Viajes)
     print("\n--- 🚖 FASE 2: UNIFICACIÓN DE VIAJES (YELLOW & GREEN) ---")
