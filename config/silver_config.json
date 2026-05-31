@@ -1,0 +1,29 @@
+{
+  "environments": {
+    "dev": {
+      "catalog": "dev"
+    }
+  },
+  "dimensions": [
+    {
+      "name": "dim_zones",
+      "type": "zone",
+      "source_table": "{catalog}.bronze.raw_taxi_trip_zone",
+      "target_table": "{catalog}.silver.dim_taxi_trip_zone"
+    },
+    {
+      "name": "dim_descriptions",
+      "type": "description",
+      "source_table": "{catalog}.bronze.raw_taxi_trip_description",
+      "target_table": "{catalog}.silver.dim_taxi_trip_description"
+    }
+  ],
+  "trips_pipeline": {
+    "source_yellow": "{catalog}.bronze.raw_taxi_trip_yellow",
+    "source_green": "{catalog}.bronze.raw_taxi_trip_green",
+    "target_unioned": "{catalog}.silver.int_trips_unioned",
+    "source_unioned": "{catalog}.silver.int_trips_unioned",
+    "source_payment_type_desc": "{catalog}.silver.dim_taxi_trip_description",
+    "target_table": "{catalog}.silver.int_trips"
+  }
+}
