@@ -36,19 +36,14 @@ def main():
     # 4. Fase 1: Procesar Dimensiones / Tablas Maestras
     print("\n--- 🏗️ FASE 1: PROCESAMIENTO DE DIMENSIONES ---")
     for dim in config_data["dimensions"]:
-        dim["source_table"] = dim["source_table"].format(catalog=catalog)
-        dim["target_table"] = dim["target_table"].format(catalog=catalog)
+        source_table = dim["source_table"].format(catalog=catalog)
+        target_table = dim["target_table"].format(catalog=catalog)
         
-        try:
-            if dim["type"] == "zone":
-                process_dimensions_zone(spark, dim)
-            elif dim["type"] == "description":
-                process_dimensions_description(spark, dim)
-            else:
-                print(f"⚠️ Tipo de dimensión desconocido: {dim['type']} para {dim['name']}")
-        except Exception as e:
-            print(f"❌ Error procesando dimensión {dim['name']}: {str(e)}")
-            raise e
+        print(f"📦 Procesando dimensión [{dim['name']}] ({dim['type']})...")
+        if dim["type"] == "zone":
+            process_dimensions_zone(spark, source_table, target_table)
+        elif dim["type"] == "description":
+            process_dimensions_description(spark, source_table, target_table)
 
     # 5. Fase 2: Procesar Hechos (Unificación de Viajes)
     print("\n--- 🚖 FASE 2: UNIFICACIÓN DE VIAJES (YELLOW & GREEN) ---")
