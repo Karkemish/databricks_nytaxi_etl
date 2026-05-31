@@ -36,10 +36,12 @@ def main():
     # 4. Fase 1: Procesar Dimensiones / Tablas Maestras
     print("\n--- 🏗️ FASE 1: PROCESAMIENTO DE DIMENSIONES ---")
     for dim in config_data["dimensions"]:
-        source_table = dim["source_table"].format(catalog=catalog)
-        target_table = dim["target_table"].format(catalog=catalog)
-        
+        dim["source_table"] = dim["source_table"].format(catalog=catalog)
+        dim["target_table"] = dim["target_table"].format(catalog=catalog)
+
         print(f"📦 Procesando dimensión [{dim['name']}] ({dim['type']})...")
+        print(f"   🔹 Origen: {dim['source_table']}")
+        print(f"   🔹 Destino: {dim['target_table']}")
         if dim["type"] == "zone":
             process_dimensions_zone(spark, dim)
         elif dim["type"] == "description":
