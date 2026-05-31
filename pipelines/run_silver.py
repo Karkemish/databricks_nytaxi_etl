@@ -29,7 +29,7 @@ def main():
         script_path = os.path.abspath(__file__)
     script_dir = os.path.dirname(script_path)
     project_root = os.path.dirname(script_dir)
-    config_path = os.path.join(project_root, "config", "bronze_config.json")
+    config_path = os.path.join(project_root, "config", "silver_config.json")
     with open(config_path, "r") as f:
         config_data = json.load(f)
 
