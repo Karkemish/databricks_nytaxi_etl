@@ -23,7 +23,7 @@ def _align_and_filter_taxi(df: DataFrame, service_type: str) -> DataFrame:
     # 3. Selección y Cast Homogéneo (dejamos nombres base para que el transformador ponga los '_id')
     df_aligned = df.select(
         col("vendorid").cast("int").alias("vendor_id"),
-        col("ratecodeid").cast("int").alias("ratecode_id"),
+        col("ratecodeid").cast("int").alias("rate_code_id"),
         col("pulocationid").cast("int").alias("pickup_location_id"),
         col("dolocationid").cast("int").alias("dropoff_location_id"),
         col(pickup_col).cast("timestamp").alias("pickup_datetime"),
