@@ -32,17 +32,17 @@ def process_gold_fct_trips(spark: SparkSession, config: dict):
 
     # 3. Enriquecer con zonas (Left Join) y calcular duración (Emulando macros de dbt)
     df_enriched = (df_trips.alias("t")
-        .join(df_zones_bcast.alias("pz"), col("t.pulocation_id") == col("pz.location_id"), "left")
-        .join(df_zones_bcast.alias("dz"), col("t.dolocation_id") == col("dz.location_id"), "left")
+        .join(df_zones_bcast.alias("pz"), col("t.pickup_location_id") == col("pz.location_id"), "left")
+        .join(df_zones_bcast.alias("dz"), col("t.dropoff_location_id") == col("dz.location_id"), "left")
         .select(
             col("t.trip_id"),
             col("t.vendor_id"),
             col("t.service_type"),
-            col("t.ratecode_id").alias("rate_code_id"),
-            col("t.pulocation_id").alias("pickup_location_id"),
+            col("t.rate_code_id"),
+            col("t.pickup_location_id"),
             col("pz.borough").alias("pickup_borough"),
             col("pz.zone").alias("pickup_zone"),
-            col("t.dolocation_id").alias("dropoff_location_id"),
+            col("t.dropoff_location_id"),
             col("dz.borough").alias("dropoff_borough"),
             col("dz.zone").alias("dropoff_zone"),
             col("t.pickup_datetime"),
